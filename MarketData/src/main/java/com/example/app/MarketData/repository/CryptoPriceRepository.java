@@ -1,4 +1,7 @@
 package com.example.app.MarketData.repository;
 
-public class CryptoPriceRepository {
+import com.example.app.MarketData.model.CryptoPrice;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CryptoPriceRepository extends JpaRepository<CryptoPrice, Long> {
 }
