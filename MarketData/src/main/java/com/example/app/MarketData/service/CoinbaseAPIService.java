@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class CoinbaseAPIService {
-    @Value("${coinbase.api.url}")
+    @Value("https://api.coinbase.com/v2/prices")
     private String coinbaseUrl;
 
     private final RestTemplate restTemplate;
