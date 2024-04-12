@@ -19,17 +19,18 @@ public class CoinbaseAPIService {
         this.restTemplate = restTemplate;
     }
 
-    public Double calculateAverageCryptoPrice() {
+    public List<CryptoPrice> fetchCryptoPricesFromCoinbase() {
         // Fetch cryptocurrency prices from Coinbase API
         CryptoPrice[] cryptoPrices = restTemplate.getForObject(coinbaseUrl, CryptoPrice[].class);
+        return Arrays.asList(cryptoPrices);
+    }
 
+    public Double calculateAverageCryptoPrice(List<CryptoPrice> cryptoPrices) {
         // Calculate average price
-        double totalPrice = Arrays.stream(cryptoPrices)
+        double totalPrice = cryptoPrices.stream()
                 .mapToDouble(CryptoPrice::getAveragePrice)
                 .sum();
-        int totalPrices = cryptoPrices.length;
-        double averagePrice = totalPrices > 0 ? totalPrice / totalPrices : 0.0;
-
-        return averagePrice;
+        int totalPrices = cryptoPrices.size();
+        return totalPrices > 0 ? totalPrice / totalPrices : 0.0;
     }
 }
