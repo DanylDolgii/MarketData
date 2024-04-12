@@ -17,6 +17,11 @@ public class CryptoService {
     public CryptoService(CryptoPriceRepository cryptoPriceRepository) {
         this.cryptoPriceRepository = cryptoPriceRepository;
     }
+
+    public List<CryptoPrice> getAverageCryptoPrices() {
+        return cryptoPriceRepository.findAll();
+    }
+
     public List<CryptoPrice> getAllCryptoPrices() {
         return cryptoPriceRepository.findAll();
     }
